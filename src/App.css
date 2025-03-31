@@ -24,7 +24,7 @@ body {
 /* Main container for our application */
 .app-container {
   width: 90%;
-  max-width: 1700px;
+  max-width: 1650px;
   margin: 2rem auto;
   background: white;
   border-radius: 10px;

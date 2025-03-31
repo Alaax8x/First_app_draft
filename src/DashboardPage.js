@@ -14,7 +14,7 @@ function DashboardPage() {
       });
     };
     
-    const cleanup = loadTableauScript();
+    // const cleanup = loadTableauScript();
     
 // Replace the initTableau function with this:
 const initTableau = () => {
@@ -93,20 +93,20 @@ const initTableau = () => {
         
         <div className="tableau-viz-container" id="tableauVizContainer">
           <div className='tableauPlaceholder' id='viz1743276850044'>
-            <noscript>
-              <a href='#'>
-                <img 
-                  alt='Dashboard 1' 
-                  src='https://public.tableau.com/static/images/Ba/BankloanDashboard_17432767131830/Dashboard1/1_rss.png' 
-                  style={{border: 'none'}} 
-                />
-              </a>
-            </noscript>
+          <noscript>
+            <a href = 'https://public.tableau.com/views/BankloanDashboard_17432767131830/Dashboard1'>
+              <img 
+                alt='Dashboard 1' 
+                src='https://public.tableau.com/static/images/Ba/BankloanDashboard_17432767131830/Dashboard1/1_rss.png' 
+                style={{border: 'none'}} 
+              />
+            </a>
+          </noscript>
             <object className='tableauViz'>
               <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
               <param name='embed_code_version' value='3' />
               <param name='site_root' value='' />
-              <param name='name' value='BankloanDashboard_17432767131830/Dashboard1' />
+              <param name='name' value='BankloanDashboard_17432767131830/Dashboard1'  />
               <param name='tabs' value='no' />
               <param name='toolbar' value='yes' />
               <param name='static_image' value='https://public.tableau.com/static/images/Ba/BankloanDashboard_17432767131830/Dashboard1/1.png' />

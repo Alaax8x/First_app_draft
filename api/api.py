@@ -2,6 +2,8 @@ from flask import Flask, jsonify, send_file, send_from_directory, request
 from flask_cors import CORS
 import pandas as pd
 import seaborn as sns
+import matplotlib
+matplotlib.use('Agg')  # Fix GUI backend issue
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier

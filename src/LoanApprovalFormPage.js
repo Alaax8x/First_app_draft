@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const LoanApprovalFormPage = () => {
-  // Form state
+  // State to store form input values
+  // This is React's way of managing data that changes in the component
   const [formData, setFormData] = useState({
     Age: 45,
     Experience: 5,
@@ -17,49 +18,50 @@ const LoanApprovalFormPage = () => {
     CreditCard: 1
   });
 
-  // Results state
-  const [prediction, setPrediction] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // State to store API response and UI states
+  const [prediction, setPrediction] = useState(null); // Stores prediction results
+  const [loading, setLoading] = useState(false);      // Tracks if form is submitting
+  const [error, setError] = useState(null);           // Stores any error messages
 
-  // Handle form input changes
+  // Handle text/number input changes
+  // This function updates the formData state when input values change
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    let processedValue = value;
-        
+    const { name, value } = e.target; // Get the field name and new value
     setFormData({
-      ...formData,
-      [name]: processedValue
+      ...formData, // Keep all existing form data
+      [name]: value // Update only the changed field
     });
   };
 
-  // Handle checkbox changes (binary fields)
+  // Handle checkbox input changes (converts to 0 or 1)
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: checked ? 1 : 0
+      [name]: checked ? 1 : 0 // Convert boolean to 1 or 0
     });
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
+    e.preventDefault(); // Prevent default form submission behavior
+    setLoading(true);   // Show loading state
+    setError(null);     // Clear any previous errors
     
     try {
+      // Send form data to backend API
       const response = await axios.post('http://127.0.0.1:5000/predict_loan', formData);
-      setPrediction(response.data);
+      setPrediction(response.data); // Store prediction results
     } catch (err) {
+      // Handle errors
       setError('Error submitting the form. Please try again.');
       console.error(err);
     } finally {
-      setLoading(false);
+      setLoading(false); // Hide loading state when done
     }
   };
 
-  // Reset form and results
+  // Reset form to initial state
   const handleReset = () => {
     setFormData({
       Age: 0,
@@ -74,11 +76,12 @@ const LoanApprovalFormPage = () => {
       Online: 0,
       CreditCard: 0
     });
-    setPrediction(null);
-    setError(null);
+    setPrediction(null); // Clear any prediction results
+    setError(null);      // Clear any errors
   };
 
-  // Helper to render changes in counterfactuals
+  // Helper function to display counterfactual changes
+  // Shows what changes could help get an approval
   const renderChanges = (changes) => {
     return Object.entries(changes).map(([key, value]) => (
       <div key={key} className="change-item">
@@ -91,12 +94,15 @@ const LoanApprovalFormPage = () => {
     <div className="loan-approval-container">
       <h1>Loan Approval Predictor</h1>
       
+      {/* Form container */}
       <div className="form-container">
         <form onSubmit={handleSubmit}>
+          {/* Personal Information Section */}
           <div className="form-group">
             <h2>Personal Information</h2>
             
             <div className="form-row">
+              {/* Age field */}
               <div className="form-field">
                 <label htmlFor="Age">Age</label>
                 <input 
@@ -109,6 +115,7 @@ const LoanApprovalFormPage = () => {
                 />
               </div>
               
+              {/* Experience field */}
               <div className="form-field">
                 <label htmlFor="Experience">Experience (years)</label>
                 <input 
@@ -123,6 +130,7 @@ const LoanApprovalFormPage = () => {
             </div>
             
             <div className="form-row">
+              {/* Income field */}
               <div className="form-field">
                 <label htmlFor="Income">Income (thousands)</label>
                 <input 
@@ -135,10 +143,10 @@ const LoanApprovalFormPage = () => {
                   step="0.1"
                 />
               </div>
-              
             </div>
             
             <div className="form-row">
+              {/* Family members field */}
               <div className="form-field">
                 <label htmlFor="Family">Family Members</label>
                 <input 
@@ -152,6 +160,7 @@ const LoanApprovalFormPage = () => {
                 />
               </div>
               
+              {/* Education level dropdown */}
               <div className="form-field">
                 <label htmlFor="Education">Education Level (1-3)</label>
                 <select 
@@ -169,10 +178,12 @@ const LoanApprovalFormPage = () => {
             </div>
           </div>
           
+          {/* Financial Information Section */}
           <div className="form-group">
             <h2>Financial Information</h2>
             
             <div className="form-row">
+              {/* Credit card spending field */}
               <div className="form-field">
                 <label htmlFor="CCAvg">Average Credit Card Spending (thousands)</label>
                 <input 
@@ -186,6 +197,7 @@ const LoanApprovalFormPage = () => {
                 />
               </div>
               
+              {/* Mortgage field */}
               <div className="form-field">
                 <label htmlFor="Mortgage">Mortgage (thousands)</label>
                 <input 
@@ -200,7 +212,9 @@ const LoanApprovalFormPage = () => {
               </div>
             </div>
             
+            {/* Checkbox options section */}
             <div className="form-row checkboxes">
+              {/* Securities Account checkbox */}
               <div className="form-field checkbox">
                 <input 
                   type="checkbox" 
@@ -212,6 +226,7 @@ const LoanApprovalFormPage = () => {
                 <label htmlFor="Securities.Account">Securities Account</label>
               </div>
               
+              {/* CD Account checkbox */}
               <div className="form-field checkbox">
                 <input 
                   type="checkbox" 
@@ -223,6 +238,7 @@ const LoanApprovalFormPage = () => {
                 <label htmlFor="CD.Account">CD Account</label>
               </div>
               
+              {/* Online Banking checkbox */}
               <div className="form-field checkbox">
                 <input 
                   type="checkbox" 
@@ -234,6 +250,7 @@ const LoanApprovalFormPage = () => {
                 <label htmlFor="Online">Online Banking</label>
               </div>
               
+              {/* Credit Card checkbox */}
               <div className="form-field checkbox">
                 <input 
                   type="checkbox" 
@@ -247,10 +264,14 @@ const LoanApprovalFormPage = () => {
             </div>
           </div>
           
+          {/* Form action buttons */}
           <div className="form-actions">
+            {/* Submit button - disabled when loading */}
             <button type="submit" className="submit-button" disabled={loading}>
               {loading ? 'Processing...' : 'Check Approval'}
             </button>
+            
+            {/* Reset button */}
             <button type="button" className="reset-button" onClick={handleReset}>
               Reset Form
             </button>
@@ -258,12 +279,14 @@ const LoanApprovalFormPage = () => {
         </form>
       </div>
       
+      {/* Show error message if there's an error */}
       {error && (
         <div className="error-message">
           {error}
         </div>
       )}
       
+      {/* Show prediction results if available */}
       {prediction && (
         <div className={`prediction-result ${prediction.is_approved ? 'approved' : 'rejected'}`}>
           <h2>{prediction.is_approved ? 'Loan Approved! 🎉' : 'Loan Application Declined'}</h2>
@@ -271,6 +294,7 @@ const LoanApprovalFormPage = () => {
             Approval Probability: {(prediction.approval_probability * 100).toFixed(2)}%
           </p>
           
+          {/* Show improvement suggestions if loan was rejected */}
           {!prediction.is_approved && prediction.counterfactuals && (
             <div className="counterfactual-section">
               <h3>How to Improve Your Application</h3>

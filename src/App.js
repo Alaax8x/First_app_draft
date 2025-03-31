@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-do
 import "./App.css";
 import ModelEvaluationPage from "./ModelEvaluationPage";
 import LoanApprovalFormPage from "./LoanApprovalFormPage";
-import ExploratoryDataAnalysisPage from "./ExploratoryDataAnalysisPage";
+import DashboardPage from "./DashboardPage";
 
 function HomePage() {
   return (
@@ -21,9 +21,9 @@ function HomePage() {
           <NavLink to="/visualisation" className="home-button">View Visualizations</NavLink>
         </div>
         <div className="home-option">
-          <h2>Exploratory Data Analysis</h2>
-          <p>Explore patterns and insights in the loan data</p>
-          <NavLink to="/exploratory-data-analysis" className="home-button">Explore Data</NavLink>
+          <h2>Dashboard</h2>
+          <p>Explore interactive Tableau dashboard with loan data insights</p>
+          <NavLink to="/dashboard" className="home-button">View Dashboard</NavLink>
         </div>
         <div className="home-option">
           <h2>Model Evaluation</h2>
@@ -57,7 +57,7 @@ function App() {
           <NavLink to="/" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Home</NavLink>
           <NavLink to="/loan-approval-form" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Loan Approval</NavLink>
           <NavLink to="/visualisation" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Visualizations</NavLink>
-          <NavLink to="/exploratory-data-analysis" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>EDA</NavLink>
+          <NavLink to="/dashboard" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Dashboard</NavLink>
           <NavLink to="/model-evaluation" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>Model Evaluation</NavLink>
         </nav>
         <div className="content-container">
@@ -65,7 +65,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/loan-approval-form" element={<LoanApprovalFormPage />} />
             <Route path="/visualisation" element={<VisualizationPage />} />
-            <Route path="/exploratory-data-analysis" element={<ExploratoryDataAnalysisPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/model-evaluation" element={<ModelEvaluationPage />} />
           </Routes>
         </div>

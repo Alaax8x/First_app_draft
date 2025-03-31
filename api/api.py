@@ -29,6 +29,9 @@ def initialize_model():
     data.drop('ID', axis='columns', inplace=True)
     data.drop('ZIP.Code', axis='columns', inplace=True)
 
+    # Converting negatives to their absolute value
+    data["Experience"] = abs(data["Experience"])
+    
     # Balancing Data
     minority_class = data[data['Personal.Loan'] == 1]
     majority_class = data[data['Personal.Loan'] == 0]
@@ -74,7 +77,10 @@ def predict():
     data = pd.read_csv('data/bankloan.csv')
     data.drop('ID', axis='columns', inplace=True)
     data.drop('ZIP.Code', axis='columns', inplace=True)
-
+    
+    # Converting negatives to their absolute value
+    data["Experience"] = abs(data["Experience"])
+    
     # Balancing Data
     minority_class = data[data['Personal.Loan'] == 1]
     majority_class = data[data['Personal.Loan'] == 0]
@@ -187,8 +193,6 @@ def generate_counterfactuals(query_instance):
         pd.DataFrame([query_instance]),
         total_CFs=2,
         desired_class="opposite",
-        proximity_weight=0.9,
-        # diversity_weight=1.0,
         features_to_vary=features_to_vary,
         permitted_range={'Experience': [x, x + 10]}
     )

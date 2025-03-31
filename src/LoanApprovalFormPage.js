@@ -26,12 +26,7 @@ const LoanApprovalFormPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     let processedValue = value;
-    
-    // // Convert numeric fields to numbers
-    // if (name !== 'ZIP.Code') {
-    //   processedValue = parseFloat(value);
-    // }
-    
+        
     setFormData({
       ...formData,
       [name]: processedValue

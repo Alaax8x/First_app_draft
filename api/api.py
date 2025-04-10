@@ -185,10 +185,14 @@ def generate_counterfactuals(query_instance):
     
     features_to_vary = ['Experience', 'Income', 'CCAvg', 'Education',
                         'Securities.Account', 'CD.Account', 'Online', 'CreditCard']
-    x = query_instance.get('Experience')
+    x = int(query_instance.get('Experience', 0))
 
     # Create DiCE explainer
     exp = dice_ml.Dice(dice_data, dice_model, method="genetic")
+    
+    # Convert Income to float
+    income = float(query_instance.get('Income', 0))
+    query_instance['Income'] = income  # Update the instance with converted value
     
     # Generate counterfactuals
     cf_examples = exp.generate_counterfactuals(

@@ -227,6 +227,21 @@ h2 {
   background-color: #f0f0f0;
 }
 
+.accuracy-row {
+  background-color: #f0f8ff;
+  font-weight: 500;
+}
+
+.metrics-table tr.accuracy-row {
+  border-top: 2px solid #ddd;
+  background-color: #f0f8ff;
+  font-weight: 500;
+}
+
+.metrics-table tr.accuracy-row td:first-child {
+  text-transform: capitalize;
+}
+
 /* Visualization image */
 .visualization-image {
   max-width: 100%;
@@ -293,7 +308,6 @@ h2 {
     margin-bottom: 0.5rem;
   }
 }
-
 
 .tableauPlaceholder .tableauViz {
   width: 100% !important;

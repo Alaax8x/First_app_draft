@@ -7,7 +7,7 @@ const LoanApprovalFormPage = () => {
   const [formData, setFormData] = useState({
     Age: 45,
     Experience: 5,
-    Income: 40,
+    Income: 40.0,
     Family: 1,
     CCAvg: 6.1,
     Education: 1,
@@ -26,10 +26,15 @@ const LoanApprovalFormPage = () => {
   // Handle text/number input changes
   // This function updates the formData state when input values change
   const handleChange = (e) => {
-    const { name, value } = e.target; // Get the field name and new value
+    const { name, value } = e.target;
+    // Convert to number and validate Education values
+    const numValue = Number(value);
+    if (name === 'Education' && (numValue < 1 || numValue > 3)) {
+      return; // Don't update if Education value is invalid
+    }
     setFormData({
-      ...formData, // Keep all existing form data
-      [name]: value // Update only the changed field
+      ...formData,
+      [name]: numValue
     });
   };
 
@@ -64,13 +69,13 @@ const LoanApprovalFormPage = () => {
   // Reset form to initial state
   const handleReset = () => {
     setFormData({
-      Age: 0,
-      Experience: 0,
-      Income: 0,
-      Family: 0,
-      CCAvg: 0,
-      Education: 0,
-      Mortgage: 0,
+      Age: '',
+      Experience: '',
+      Income: '',
+      Family: '',
+      CCAvg: '',
+      Education: '',
+      Mortgage: '',
       'Securities.Account': 0,
       'CD.Account': 0,
       Online: 0,
@@ -170,6 +175,7 @@ const LoanApprovalFormPage = () => {
                   onChange={handleChange} 
                   required
                 >
+                  <option value="">Select Education Level</option>
                   <option value="1">Undergraduate</option>
                   <option value="2">Graduate</option>
                   <option value="3">Advanced/Professional</option>

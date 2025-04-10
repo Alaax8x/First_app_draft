@@ -80,6 +80,17 @@ function ModelEvaluationPage() {
               <tbody>
                 {/* Map through the report data to create table rows */}
                 {report && Object.keys(report).map((label, index) => {
+                  if (label === 'accuracy') {
+                    return (
+                      <tr key={index} className="accuracy-row">
+                        <td>{label}</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>{report[label].toFixed(2)}</td>
+                        <td>{report['weighted avg']?.support}</td>
+                      </tr>
+                    );
+                  }
                   // Only render if the value is an object (contains metric data)
                   if (typeof report[label] === "object") {
                     return (

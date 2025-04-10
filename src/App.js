@@ -9,10 +9,10 @@ function HomePage() {
   return (
     <div className="page-container">
       {/* Page title */}
-      <h1>Welcome to ML Model Analysis Project</h1>
+      <h1>Welcome to XAI Model Loan Approval Project</h1>
       
       {/* Introduction text */}
-      <p>This application provides tools for visualizing and evaluating machine learning models.</p>
+      <p>This application provides tools for explination, visualizing and evaluating machine learning models.</p>
       
       {/* Grid of options for site navigation */}
       <div className="home-options">
@@ -33,7 +33,7 @@ function HomePage() {
         {/* Model evaluation option */}
         <div className="home-option">
           <h2>Model Evaluation</h2>
-          <p>Analyze model performance metrics and feature importance</p>
+          <p>Analyze model performance metrics, feature importance and decision tree</p>
           <NavLink to="/model-evaluation" className="home-button">Evaluate Model</NavLink>
         </div>
       </div>

@@ -117,6 +117,7 @@ const LoanApprovalFormPage = () => {
                   value={formData.Age} 
                   onChange={handleChange} 
                   required 
+                  min={18}
                 />
               </div>
               
@@ -130,6 +131,7 @@ const LoanApprovalFormPage = () => {
                   value={formData.Experience} 
                   onChange={handleChange} 
                   required 
+                  min={0}
                 />
               </div>
             </div>
@@ -146,6 +148,7 @@ const LoanApprovalFormPage = () => {
                   onChange={handleChange} 
                   required 
                   step="0.1"
+                  min={1}
                 />
               </div>
             </div>
@@ -200,6 +203,7 @@ const LoanApprovalFormPage = () => {
                   onChange={handleChange} 
                   required 
                   step="0.1"
+                  min={0}
                 />
               </div>
               
@@ -214,6 +218,7 @@ const LoanApprovalFormPage = () => {
                   onChange={handleChange} 
                   required 
                   step="0.1"
+                  min={0}
                 />
               </div>
             </div>

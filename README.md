@@ -1,3 +1,13 @@
+# To run this application, follow the steps below:
+-
+- To activate the api and run it:
+    - Go to the api repository in the terminal and run the following
+        - . venv\Scripts\activate
+        - flask run
+    - In a different terminal, run this:
+        -  npm start
+- For more guidance, look below.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
